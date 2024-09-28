@@ -36,9 +36,9 @@ It should have following structure:
 - - templates
 - - - index.html
 
-Documentation from manufacturer is listing M4011 which has teh same specs as J305
+Documentation from manufacturer is listing M4011 which has the same specs as J305
 
-ssl_context=('cert.pem', 'key.pem') can be replaced by ssl_context='adhoc' if oyu dont have keys - https://zhangtemplar.github.io/flask/
+ssl_context=('cert.pem', 'key.pem') can be replaced by ssl_context='adhoc' if you dont have keys - https://zhangtemplar.github.io/flask/
 
 rpi5 has problems with gpio remove it using:
 ```
