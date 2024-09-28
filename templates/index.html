@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radiation Metrics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            /*background-color: black; /* Dark background */
+            /*color: #00ff00; /* Green text */
+            font-family: Arial, sans-serif;
+        }
+        #chartContainer {
+            width: 80%;
+            margin: auto;
+        }
+        #currentValues {
+            text-align: center;  /* Align current values to the center */
+            margin: 20px 0;
+            width: 80%;  /* Make sure the width is consistent with the chart */
+            margin-left: auto; /* Center the content in the same width */
+            margin-right: auto; /* Center the content in the same width */
+        }
+        .risk-info {
+            max-width: 80%; /* Limit width to match the comparison table */
+            margin: 20px auto; /* Center with equal left/right margins */
+            text-align: left; /* Align text to the left */
+        }
+        .risk-info div {
+            margin: 10px 0; /* Space between each risk info line */
+            display: flex;
+            align-items: center; /* Center items vertically */
+        }
+        .green-box {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: green;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+        .orange-box {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: orange;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+        .red-box {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+        #comparisonTable {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        #comparisonTable th, #comparisonTable td {
+            border: 1px solid #000000; /* Green border */
+            padding: 10px;
+            text-align: left;
+        }
+        #comparisonTable th {
+           background-color: #ffffff; /* Darker green background for header */
+        }
+        h1 {
+            text-align: center; /* Center the title */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Real-Time Radiation Metrics</h1>
+
+<!-- Chart container -->
+<div id="chartContainer">
+    <canvas id="radiationChart"></canvas>
+</div>
+
+<!-- Current Values Display -->
+<div id="currentValues">
+    <h3>Current Values:</h3>
+    <p id="currentCpm">Counts Per Minute (CPM): 0</p>
+    <p id="currentUsvh">Microsieverts per Hour (uSv/h): <span id="usvhValue">0</span></p>
+</div>
+<!-- Risk Information Section -->
+<div class="risk-info">
+	<div>
+        <span class="green-box"></span> 0.2 - 1 µSv/h	Safe; typical background radiation.
+    </div>
+    <div>
+        <span class="orange-box"></span> 1 - 5 µSv/h	Moderate risk; caution advised.
+    </div>
+    <div>
+        <span class="red-box"></span> 10+ µSv/h	High risk; immediate action recommended.
+    </div>
+</div>
+<!-- Comparison Table -->
+<table id="comparisonTable">
+    <thead>
+        <tr>
+            <th>Radiation Level</th>
+            <th>Equivalent Dose</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0.00005 mSv</td>
+            <td>Sleeping next to someone</td>
+        </tr>
+        <tr>
+            <td>0.00009 mSv</td>
+            <td>Living within 30 miles of a nuclear power plant for a year</td>
+        </tr>
+        <tr>
+            <td>0.0001 mSv</td>
+            <td>Eating one banana</td>
+        </tr>
+        <tr>
+            <td>0.0003 mSv</td>
+            <td>Living within 50 miles of a coal power plant for a year</td>
+        </tr>
+        <tr>
+            <td>0.01 mSv</td>
+            <td>Average daily dose received from natural background</td>
+        </tr>
+        <tr>
+            <td>0.02 mSv</td>
+            <td>Chest X-ray</td>
+        </tr>
+        <tr>
+            <td>0.04 mSv</td>
+            <td>A 5-hour airplane flight</td>
+        </tr>
+        <tr>
+            <td>0.60 mSv</td>
+            <td>Mammogram</td>
+        </tr>
+        <tr>
+            <td>1 mSv</td>
+            <td>Annual dose limit for individual members of the public</td>
+        </tr>
+        <tr>
+            <td>3.65 mSv</td>
+            <td>Average yearly dose received from natural background</td>
+        </tr>
+        <tr>
+            <td>5.8 mSv</td>
+            <td>Chest CT scan</td>
+        </tr>
+        <tr>
+            <td>10 mSv</td>
+            <td>Average yearly dose received from natural background in Ramsar, Iran</td>
+        </tr>
+        <tr>
+            <td>20 mSv</td>
+            <td>Single full-body CT scan</td>
+        </tr>
+        <tr>
+            <td>175 mSv</td>
+            <td>Annual dose from natural radiation on a monazite beach near Guarapari, Brazil</td>
+        </tr>
+        <tr>
+            <td>5,000 mSv</td>
+            <td>Dose that kills a human with a 50% risk within 30 days (LD50/30)</td>
+        </tr>
+    </tbody>
+</table>
+<div class="risk-info">
+    <div>
+        <span class="green-box"></span> 0-5 mSv: No direct evidence of harm
+    </div>
+    <div>
+        <span class="orange-box"></span> 5-50 mSv: No early effects, but increased risk of cancer later in life
+    </div>
+    <div>
+        <span class="red-box"></span> 50+ mSv: Exposure of greater than 50mSv can result in immediate and long-term effects including nausea, radiation sickness, and risk of death
+    </div>
+</div>
+<script>
+    // Initialize Chart.js
+    const ctx = document.getElementById('radiationChart').getContext('2d');
+    const radiationChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [],  // Labels for time
+            datasets: [{
+                label: 'CPM',
+                data: [],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,  // Fill area under the line
+                yAxisID: 'y',
+            }, {
+                label: 'uSv/h',
+                data: [],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                fill: true,  // Fill area under the line
+                yAxisID: 'y1',
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Counts Per Minute (CPM)',
+                        color: '#000000' // Green text for y-axis title
+                    },
+                    ticks: {
+                        stepSize: 10, // Set the step size for the y-axis
+                        color: '#000000' // Green ticks
+                    },
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.2)', // Light green grid lines
+                    }
+                },
+                y1: {
+                    beginAtZero: true,
+                    position: 'right',
+                    title: {
+                        display: true,
+                        text: 'Microsieverts per Hour (uSv/h)',
+                        color: '#000000' // Green text for y-axis title
+                    },
+                    ticks: {
+                        color: '#000000' // Green ticks
+                    },
+                    grid: {
+                        drawOnChartArea: false,  // Only draw grid lines for y-axis
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Time (seconds)',
+                        color: '#000000' // Green text for x-axis title ( color: '#00ff00' )
+                    },
+                    ticks: {
+                        color: '#000000' // Green ticks
+                    }
+                }
+            }
+        }
+    });
+
+    // Function to fetch data and update the chart
+    function updateData() {
+        fetch('/data')  // Change to your actual endpoint
+            .then(response => response.json())
+            .then(data => {
+                const now = new Date().toLocaleTimeString();
+
+                // Update current values display
+                document.getElementById('currentCpm').innerText = `Counts Per Minute (CPM): ${data.cpm}`;
+                
+                // Update uSv/h value with color change based on its value
+                const usvhValue = data.usvh;
+                const currentUsvhElement = document.getElementById('usvhValue');
+                currentUsvhElement.innerText = usvhValue;  // Set the value
+               
+                // Change color based on uSv/h value
+                if (usvhValue > 10) {
+                    currentUsvhElement.style.color = 'red';
+                } else if (usvhValue >= 1) {
+                    currentUsvhElement.style.color = 'orange';
+                } else {
+                    currentUsvhElement.style.color = 'green';
+                }
+				// Update the current Usvh value to 4 decimal places
+				currentUsvhElement.textContent = parseFloat(data.usvh).toFixed(4);
+                // Add the current time to the labels (x-axis)
+                radiationChart.data.labels.push(now);
+
+                // Add new data points for CPM and uSv/h
+                radiationChart.data.datasets[0].data.push(data.cpm);
+                radiationChart.data.datasets[1].data.push(data.usvh);
+
+                // Keep only the last 13 data points 5x13 = 65 sec - 5 sec remove
+                if (radiationChart.data.labels.length > 13) {
+                    radiationChart.data.labels.shift();  // Remove the first (oldest) time label
+                    radiationChart.data.datasets[0].data.shift();  // Remove the first CPM point
+                    radiationChart.data.datasets[1].data.shift();  // Remove the first uSv/h point
+                }
+
+                // Update the chart with new data
+                radiationChart.update();
+            });
+    }
+
+    // Update the chart every 5 seconds
+    setInterval(updateData, 5000);
+</script>
+
+</body>
+</html>
