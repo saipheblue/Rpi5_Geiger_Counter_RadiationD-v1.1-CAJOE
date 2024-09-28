@@ -3,6 +3,8 @@ Rpi5 with RadiationD-v1.1-CAJOE module + html site frontend with real time measu
 
 ![preview](https://github.com/user-attachments/assets/e0ad5fa0-65c0-49f1-919c-1d113893f186)
 
+***ALL INFORMATIONS ON INDEX.html CAN BE MISLEADING AS I AM NO EXPERT AND I PROBABLY DID MISTAKES SO TAKE IT WITH RESERVE***
+
 # Start measuring
 
 run the script and keep it running
