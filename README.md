@@ -1,5 +1,5 @@
 # Rpi5_Geiger_Counter_RadiationD-v1.1-CAJOE
-Rpi5 with RadiationD-v1.1-CAJOE module + html site frontend with real tiem measurments and chart
+Rpi5 with RadiationD-v1.1-CAJOE module + html site frontend with real time measurments and chart
 
 # Start measuring
 
@@ -18,7 +18,7 @@ Connect 5V to any 5V, Ground to any ground and VIN to GPIO4 ( pin 7 )
 
 # Issues
 
-If you got permisisons error then use sudo
+If you got permisisons error then use **sudo**
 
 If you get 404 error make sure index page is in "templates" folder, it is case sensitive
 It should have following structure:
@@ -47,7 +47,7 @@ more info - https://pimylifeup.com/python-externally-managed-environment/
 
 # μSv/h ratio
 
-Almsot everyone is using wrong coefficient / ratio of 0.00812037037037 here is the formula I used together with source elaboratin why 0.0081 is wrong
+Almsot everyone is using wrong coefficient / ratio of 0.00812037037037 here is the formula I used together with source elaborating why 0.0081 is wrong !
 J305 has 25 CPM
 1 / (25 * 60 / 8.77)  https://medium.com/@iotdevices/geiger-tube-j305-how-to-calculate-the-conversion-factor-of-cpm-to-%CE%BCsv-h-technical-note-b0cc14850576
 
