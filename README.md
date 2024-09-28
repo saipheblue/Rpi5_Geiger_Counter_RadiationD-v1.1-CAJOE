@@ -18,7 +18,12 @@ Others on your network can access it using *rpi5ip*:80/index
 Connect 5V to any 5V, Ground to any ground and VIN to GPIO4 ( pin 7 )
 ![GPIO_rpi5](https://github.com/user-attachments/assets/cc65b6c3-409a-4858-9668-00cd6c34757a)
 
-# Issues
+# Issues & pre-req
+
+Install flask
+```
+pip install flask
+```
 
 If you got permisisons error then use **sudo**
 
