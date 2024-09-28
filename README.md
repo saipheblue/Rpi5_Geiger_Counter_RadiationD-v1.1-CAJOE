@@ -1,6 +1,8 @@
 # Rpi5_Geiger_Counter_RadiationD-v1.1-CAJOE
 Rpi5 with RadiationD-v1.1-CAJOE module + html site frontend with real time measurments and chart
 
+![preview](https://github.com/user-attachments/assets/e0ad5fa0-65c0-49f1-919c-1d113893f186)
+
 # Start measuring
 
 run the script and keep it running
