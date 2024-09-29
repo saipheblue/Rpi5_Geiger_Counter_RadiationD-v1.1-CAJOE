@@ -8,7 +8,7 @@ app = Flask(__name__)
 # Counts Per Minute and uSv/h initialization
 cpm = 0
 counts = 0
-usvh_ratio = 0.00664393939394   # Conversion factor from CPM to uSv/h  previously used 0.00812037037037  also 0.00332 
+usvh_ratio = 0.00584666666667   # Conversion factor from CPM to uSv/h  previously used 0.00812037037037  also 0.00332 
 usvh = 0  # Initialize microsieverts per hour
 
 # Time tracking
