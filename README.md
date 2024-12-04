@@ -48,7 +48,7 @@ and install lgpio
 ```
 python3 -m pip install rpi-lgpio flask
 ```
-if you have problems with install use:
+if you have problems with install use this but it can break system packages or use virtual env.:
 ```
 python3 -m pip install rpi-lgpio flask --break-system-packages
 ```
